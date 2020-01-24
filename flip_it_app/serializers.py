@@ -6,7 +6,7 @@ from .models import Translation
 
 class TranslationSerializer(serializers.ModelSerializer):
     added = TimestampField()
-    updated = TimestampField(required=False, default=None)
+    updated = TimestampField(required=False, default=None, allow_null=True)
     deleted = serializers.BooleanField(required=False, default=False)
     starred = serializers.BooleanField(required=False, default=False)
     class Meta:

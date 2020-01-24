@@ -59,6 +59,9 @@ def sync(request):
         logger.info('Translations to update: %s; translations to create: %s',
                     len(translations_to_update), len(translations_to_create))
 
+        for upd in translations_to_update:
+            logger.info(upd.starred)
+
         Translation.objects.bulk_update(translations_to_update,
                                         ['updated', 'original', 'translation', 'starred', 'deleted'])
         Translation.objects.bulk_create(translations_to_create)
