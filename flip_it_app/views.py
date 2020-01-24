@@ -46,18 +46,21 @@ def sync(request):
                 server_translation.original = translation['original']
                 server_translation.translation = translation['translation']
                 server_translation.deleted = translation['deleted']
+                server_translation.starred = translation['starred']
                 translations_to_update.append(server_translation)
 
             else:
                 new_translation = Translation(uuid=uuid, added=translation['added'],
                                               updated=translation['updated'], original=translation['original'],
-                                              translation=translation['translation'], deleted=translation['deleted'])
+                                              translation=translation['translation'], deleted=translation['deleted'],
+                                              starred=translation['starred'])
                 translations_to_create.append(new_translation)
 
         logger.info('Translations to update: %s; translations to create: %s',
                     len(translations_to_update), len(translations_to_create))
 
-        Translation.objects.bulk_update(translations_to_update, ['updated', 'original', 'translation', 'deleted'])
+        Translation.objects.bulk_update(translations_to_update,
+                                        ['updated', 'original', 'translation', 'starred', 'deleted'])
         Translation.objects.bulk_create(translations_to_create)
 
         serializer = TranslationSerializer(Translation.objects.all(), many=True)
