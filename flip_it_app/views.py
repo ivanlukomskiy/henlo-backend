@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 @csrf_exempt
 def sync(request):
     if request.method == 'GET':
-        translations = Translation.objects.all()
+        translations = Translation.objects.filter(deleted=False)
         serializer = TranslationSerializer(translations, many=True)
         return JsonResponse(serializer.data, safe=False)
 
@@ -63,5 +63,5 @@ def sync(request):
                                         ['updated', 'original', 'translation', 'starred', 'deleted'])
         Translation.objects.bulk_create(translations_to_create)
 
-        serializer = TranslationSerializer(Translation.objects.all(), many=True)
+        serializer = TranslationSerializer(Translation.objects.filter(deleted=False), many=True)
         return JsonResponse(serializer.data, status=200, safe=False)
