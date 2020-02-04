@@ -5,6 +5,8 @@ from .models import Translation
 
 
 class TranslationSerializer(serializers.ModelSerializer):
+    original = serializers.CharField(required=False, default='')
+    translation = serializers.CharField(required=False, default='')
     added = TimestampField()
     updated = TimestampField(required=False, default=None, allow_null=True)
     deleted = serializers.BooleanField(required=False, default=False)
