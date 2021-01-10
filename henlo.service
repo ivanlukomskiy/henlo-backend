@@ -3,7 +3,7 @@ Description=Henlo backend service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/docker-compose up
+ExecStart=/usr/local/bin/docker-compose up
 WorkingDirectory=/home/pi/henlo-backend
 StandardOutput=inherit
 StandardError=inherit
