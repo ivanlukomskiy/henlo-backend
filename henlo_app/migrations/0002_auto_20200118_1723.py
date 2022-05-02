@@ -7,7 +7,7 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('flip_it_app', '0001_initial'),
+        ('henlo_app', '0001_initial'),
     ]
 
     operations = [

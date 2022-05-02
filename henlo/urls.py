@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from flip_it_app import views
+from henlo_app import views
 
 router = routers.DefaultRouter()
 

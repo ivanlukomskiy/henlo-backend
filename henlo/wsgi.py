@@ -1,5 +1,5 @@
 """
-WSGI config for flip_it flip_it.
+WSGI config for henlo henlo.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flip_it.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'henlo.settings')
 
 application = get_wsgi_application()
