@@ -155,3 +155,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static_root'
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
