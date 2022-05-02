@@ -1,6 +1,7 @@
 .idea
 venv
 db.sqlite3
+static_root
 
 # Created by https://www.gitignore.io
 

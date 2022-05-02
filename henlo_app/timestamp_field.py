@@ -1,7 +1,7 @@
-from rest_framework import serializers
 from datetime import datetime
-from django.conf import settings
+
 from django.utils.timezone import make_aware
+from rest_framework import serializers
 
 
 class TimestampField(serializers.DateTimeField):
