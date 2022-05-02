@@ -25,8 +25,7 @@ en_formats.DATETIME_FORMAT = "d M Y H:i:s"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'e5hp=zux!0^&mh$lwsntjsx_ixe8uk4rx_o$sv%t+a&)x7svyc'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', '') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
