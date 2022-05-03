@@ -14,20 +14,15 @@ with open(TOKEN_FILE, 'r') as file:
     token = file.read().replace('\n', '')
 
 
-def has_cyrillic(text):
-    return bool(re.search('[а-яА-Я]', text))
-
-
 class Command(BaseCommand):
     help = 'Fetch drafts from telegram bot and save them to the database'
 
     def start(self, update: Update, context: CallbackContext):
         try:
             text = update.message.text.strip()
-            is_russian = has_cyrillic(text)
             Translation.objects.create(
-                original=text if not is_russian else '',
-                translation=text if is_russian else '',
+                original=text,
+                translation='',
                 added=timezone.now(),
             )
             context.bot.send_message(chat_id=update.effective_chat.id, text="Draft saved")
