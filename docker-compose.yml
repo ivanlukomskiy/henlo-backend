@@ -19,7 +19,6 @@ services:
     depends_on:
       - db
     secrets:
-      - telegram_token
       - pg_password
 
   nginx:
@@ -31,6 +30,18 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./static_root:/static_root
+
+  bot:
+    image: henlo_web
+    build: .
+    command: python manage.py telegram_watcher
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    secrets:
+      - telegram_token
+      - pg_password
 
 secrets:
   pg_password:
