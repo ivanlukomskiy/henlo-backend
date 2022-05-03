@@ -39,6 +39,8 @@ services:
       - .:/code
     depends_on:
       - db
+    environment:
+      - TELEGRAM_TOKEN_FILE=/run/secrets/telegram_token
     secrets:
       - telegram_token
       - pg_password

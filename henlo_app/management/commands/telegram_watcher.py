@@ -8,10 +8,15 @@ from telegram.ext import Updater, CallbackContext, MessageHandler, Filters
 
 from henlo_app.models import Translation
 
-TOKEN = os.getenv('telegram_token')
+TOKEN_FILE = os.getenv('TELEGRAM_TOKEN_FILE')
+token = None
+with open(TOKEN_FILE, 'r') as file:
+    token = file.read().replace('\n', '')
+
 
 def has_cyrillic(text):
     return bool(re.search('[а-яА-Я]', text))
+
 
 class Command(BaseCommand):
     help = 'Fetch drafts from telegram bot and save them to the database'
@@ -30,7 +35,7 @@ class Command(BaseCommand):
             context.bot.send_message(chat_id=update.effective_chat.id, text="Failed to save draft")
 
     def handle(self, *args, **options):
-        updater = Updater(token=TOKEN)
+        updater = Updater(token=token)
         dispatcher = updater.dispatcher
         start_handler = MessageHandler(Filters.text, self.start)
         dispatcher.add_handler(start_handler)
