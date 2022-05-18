@@ -10,6 +10,6 @@ admin.site.index_title = ''
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/sync', views.sync),
+    path('api/v1/sync', views.sync_view),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

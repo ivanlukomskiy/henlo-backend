@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=henlo
+      - POSTGRES_PASSWORD=nope
+      - POSTGRES_DB=henlo
+
+  tests:
+    image: henlo_web
+    build: .
+    command: pytest
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    environment:
+      - PG_PASSWORD=nope
+      - PG_USER=remote_video
+      - PG_DB=remote_video
+      - PG_ADDRESSES=db:5432
