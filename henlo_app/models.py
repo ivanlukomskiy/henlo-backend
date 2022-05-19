@@ -9,5 +9,5 @@ class Translation(models.Model):
     translation = models.CharField(max_length=500)
     starred = models.BooleanField(default=False, null=True)
     added = models.DateTimeField()
-    updated = models.DateTimeField(null=True, blank=True)
+    updated = models.DateTimeField()
     deleted = models.BooleanField(default=False)

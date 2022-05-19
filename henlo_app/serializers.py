@@ -8,7 +8,7 @@ class TranslationSerializer(serializers.ModelSerializer):
     original = serializers.CharField(allow_blank=True, required=False, default='', max_length=500)
     translation = serializers.CharField(allow_blank=True, required=False, default='', max_length=500)
     added = TimestampField()
-    updated = TimestampField(required=False, default=None, allow_null=True)
+    updated = TimestampField()
     deleted = serializers.BooleanField(required=False, default=False)
     starred = serializers.BooleanField(required=False, default=False)
 

@@ -26,7 +26,7 @@ def sync_view(request):
 
         sync(serializer.validated_data)
 
-        serializer = TranslationSerializer(Translation.objects.filter(deleted=False), many=True)
+        serializer = TranslationSerializer(Translation.objects.all(), many=True)
         return JsonResponse(serializer.data, status=200, safe=False)
 
 
@@ -43,10 +43,8 @@ def sync(translations):
         if uuid in server_translations:
             server_translation = server_translations[uuid]
 
-            if server_translation.updated == translation['updated'] \
-                    or translation['updated'] is None \
-                    or (translation['updated'] is not None and server_translation.updated is not None
-                        and server_translation.updated > translation['updated']):
+            if server_translation.updated >= translation['updated']:
+                print(f'{server_translation.updated} > {translation["updated"]}')
                 continue
 
             server_translation.updated = translation['updated']

@@ -21,3 +21,5 @@ services:
       - PG_USER=remote_video
       - PG_DB=remote_video
       - PG_ADDRESSES=db:5432
+      - PYTHONBREAKPOINT=ipdb.set_trace
+      - IPDB_CONTEXT_SIZE=15
