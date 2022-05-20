@@ -21,9 +21,10 @@ class Command(BaseCommand):
         try:
             text = update.message.text.strip()
             Translation.objects.create(
-                original=text,
+                original=text.lower(),
                 translation='',
                 added=timezone.now(),
+                updated=timezone.now()
             )
             context.bot.send_message(chat_id=update.effective_chat.id, text="Draft saved")
         except:

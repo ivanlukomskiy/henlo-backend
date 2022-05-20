@@ -85,3 +85,12 @@ def test_update():
 
     translation = sync_and_get(test_translation, hour=6)
     assert translation['starred'] is False
+
+
+def test_no_update_time():
+    with freeze_time(timezone.datetime(2021, 1, 2, hour=0, tzinfo=tz)):
+        translation = TranslationSerializer(TranslationFactory()).data
+
+    del translation['updated']
+    translation = sync_and_get(translation, hour=1)
+    assert translation['updated'] / 1000 == timezone.datetime(2021, 1, 2, hour=1, tzinfo=tz).timestamp()
