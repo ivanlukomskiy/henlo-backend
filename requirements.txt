@@ -6,7 +6,7 @@ attrs==21.4.0
 autobahn==22.3.2
 Automat==20.2.0
 backcall==0.2.0
-backports.zoneinfo==0.2.1
+backports.zoneinfo;python_version<"3.9"
 cachetools==4.2.2
 certifi==2021.10.8
 cffi==1.15.0
